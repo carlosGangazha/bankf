@@ -22,7 +22,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       if (decodedToken.exp > currentTime) {
         setIsAuthenticated(true);
-        navigate('/dashboard'); // Redirect to dashboard if token is valid
       } else {
         localStorage.removeItem('token');
         localStorage.removeItem('balance');
@@ -34,7 +33,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = (token: string) => {
     localStorage.setItem('token', token);
     setIsAuthenticated(true);
-    navigate('/dashboard'); 
+    navigate('/dashboard'); // Redirect to dashboard on login
   };
 
   const logout = () => {
