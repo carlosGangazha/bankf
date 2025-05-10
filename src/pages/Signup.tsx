@@ -1,7 +1,7 @@
 import { useState, type JSX } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AlertCircle, Lock, Mail, User } from 'lucide-react';
-import '../styles/Signup.css'; // Import the CSS file
+import '../styles/Signup.css';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -29,10 +29,6 @@ const Signup = () => {
       setError('Password must be at least 6 characters');
       return;
     }
-
-    // Here you would typically handle the signup logic
-    // If successful, navigate to the dashboard or login
-    // navigate('/dashboard');
   };
 
   return (

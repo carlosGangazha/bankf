@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CreditCard, DollarSign } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import '../styles/Dashboard.css'; // Import the CSS file
+import '../styles/Dashboard.css';
+import { fetchBalance } from '../apis/apis'; 
 
 interface User {
   name: string;
@@ -11,8 +12,8 @@ interface User {
 const Dashboard: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [balance, setBalance] = useState<number | null>(null); 
 
-  // Simulate fetching user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -26,7 +27,20 @@ const Dashboard: React.FC = () => {
       }
     };
 
+    const fetchBalanceData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const userBalance = await fetchBalance(token); 
+          setBalance(userBalance);
+        } catch (error) {
+          console.error('Error fetching balance:', error);
+        }
+      }
+    };
+
     fetchUserData();
+    fetchBalanceData()
   }, []);
 
   if (loading) {
@@ -45,18 +59,17 @@ const Dashboard: React.FC = () => {
         <p className="welcome-subtitle">Here's an overview of your finances</p>
       </div>
 
-      {/* Accounts section */}
+ 
       <div className="account-section">
         <h2 className="section-title">Your Accounts</h2>
         <div className="account-cards">
           <div className="account-card">
             <p className="account-label">Savings Account</p>
-            <p className="account-balance">$2,450.25</p>
+            <p className="account-balance">{balance}</p> 
           </div>
         </div>
       </div>
 
-      {/* Quick actions */}
       <div className="quick-actions">
         <h2 className="section-title">Quick Actions</h2>
         <div className="action-grid">

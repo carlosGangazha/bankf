@@ -10,11 +10,11 @@
   .welcome-title {
     font-size: 2rem;
     font-weight: bold;
-    color: #1a202c; /* Gray-900 */
+    color: #1a202c;
   }
   
   .welcome-subtitle {
-    color: #4a5568; /* Gray-600 */
+    color: #4a5568; 
   }
   
   .account-section {
@@ -24,7 +24,7 @@
   .section-title {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #1a202c; /* Gray-900 */
+    color: #1a202c; 
     margin-bottom: 12px;
   }
   
@@ -38,19 +38,19 @@
     background-color: white;
     padding: 16px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0; /* Gray-200 */
+    border: 1px solid #e2e8f0; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .account-label {
     font-size: 0.875rem;
-    color: #4a5568; /* Gray-500 */
+    color: #4a5568;
   }
   
   .account-balance {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #2d3748; /* Gray-800 */
+    color: #2d3748;
   }
   
   .quick-actions {
@@ -67,7 +67,7 @@
     background-color: white;
     padding: 16px;
     border-radius: 8px;
-    border: 1px solid #e2e8f0; /* Gray-200 */
+    border: 1px solid #e2e8f0; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,13 +75,13 @@
   }
   
   .action-card:hover {
-    background-color: #f7fafc; /* Gray-50 */
+    background-color: #f7fafc; 
   }
   
   .action-icon {
     width: 40px;
     height: 40px;
-    background-color: #ebf8ff; /* Blue-100 */
+    background-color: #ebf8ff; 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -91,13 +91,13 @@
   .action-label {
     margin-top: 8px;
     font-size: 0.875rem;
-    color: #2d3748; /* Gray-800 */
+    color: #2d3748; 
   }
   
   .transactions-section {
     background-color: white;
     border-radius: 8px;
-    border: 1px solid #e2e8f0; /* Gray-200 */
+    border: 1px solid #e2e8f0; 
     overflow: hidden;
   }
   
@@ -105,11 +105,11 @@
     display: flex;
     justify-content: space-between;
     padding: 16px;
-    border-bottom: 1px solid #e2e8f0; /* Gray-200 */
+    border-bottom: 1px solid #e2e8f0; 
   }
   
   .view-all {
-    color: #3182ce; /* Blue-600 */
+    color: #3182ce;
     font-weight: medium;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@
     display: flex;
     justify-content: space-between;
     padding: 16px;
-    border-bottom: 1px solid #edf2f7; /* Gray-200 */
+    border-bottom: 1px solid #edf2f7; 
   }
   
   .transaction-info {
@@ -135,7 +135,7 @@
   .transaction-icon {
     width: 40px;
     height: 40px;
-    background-color: #edf2f7; /* Gray-200 */
+    background-color: #edf2f7; 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -145,12 +145,12 @@
   
   .transaction-title {
     font-weight: medium;
-    color: #2d3748; /* Gray-800 */
+    color: #2d3748;
   }
   
   .transaction-date {
     font-size: 0.875rem;
-    color: #a0aec0; /* Gray-400 */
+    color: #a0aec0; 
   }
   
   .transaction-amount {
@@ -158,18 +158,18 @@
   }
   
   .transaction-amount.negative {
-    color: #e53e3e; /* Red-600 */
+    color: #e53e3e; 
   }
   
   .transaction-amount.positive {
-    color: #38a169; /* Green-600 */
+    color: #38a169; 
   }
   
   .loader {
     width: 40px;
     height: 40px;
-    border: 4px solid #e2e8f0; /* Gray-200 */
-    border-top-color: #3182ce; /* Blue-600 */
+    border: 4px solid #e2e8f0; 
+    border-top-color: #3182ce;
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
   }

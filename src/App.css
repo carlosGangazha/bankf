@@ -53,13 +53,13 @@
   background: #94a3b8;
 }
 
-/* Focus states */
+
 :focus-visible {
   outline: 2px solid #0D9488;
   outline-offset: 2px;
 }
 
-/* Animation delays */
+
 .delay-200 {
   animation-delay: 0.2s;
 }

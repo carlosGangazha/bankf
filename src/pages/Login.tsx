@@ -2,7 +2,7 @@ import { useState, type FormEvent, type ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AlertCircle, Lock, Mail } from 'lucide-react';
 import '../styles/Login.css';
-import { useAuth } from '../Auth/AuthContext'; // Import your AuthContext
+import { useAuth } from '../Auth/AuthContext';
 
 interface AuthResponse {
   token: string;
@@ -13,7 +13,7 @@ interface ErrorResponse {
 }
 
 const Login: React.FC = () => {
-  const { login } = useAuth(); // Use the login function from context
+  const { login } = useAuth(); 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -22,38 +22,62 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
-
+  
     if (!email || !password) {
       setError('Please fill in all fields');
       return;
     }
-
+  
     try {
       const response = await fetch('http://localhost:8080/api/v1/auth/authenticate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (!response.ok) {
         const errorData: ErrorResponse = await response.json();
         setError(errorData.message || 'Login failed');
         return;
       }
-
+  
       const data: AuthResponse = await response.json();
       localStorage.setItem('token', data.token);
       
       console.log('Token saved:', data.token);
+      await fetchBalance(data.token);
       
-      
-      login();
+      login(data.token);
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
       setError('An error occurred. Please try again.');
+    }
+  };
+
+  const fetchBalance = async (token: string) => {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const { userId, sub: email } = payload;
+
+      const response = await fetch('http://localhost:8080/transactions/balance', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id: userId, email }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch balance');
+      }
+  
+      const balanceData = await response.json();
+      localStorage.setItem('balance', balanceData.balance);
+      console.log('Balance fetched:', balanceData.balance);
+    } catch (error) {
+      console.error('Error fetching balance:', error);
     }
   };
 
@@ -92,6 +116,7 @@ const Login: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={handleEmailChange}
+                  required
                 />
               </div>
             </div>
@@ -107,6 +132,7 @@ const Login: React.FC = () => {
                   type="password"
                   value={password}
                   onChange={handlePasswordChange}
+                  required
                 />
               </div>
             </div>
@@ -116,7 +142,7 @@ const Login: React.FC = () => {
                 <input id="remember" type="checkbox" />
                 <label htmlFor="remember">Remember me</label>
               </div>
-              <a href="#" className="forgot-password">Forgot password?</a>
+              <Link to="#" className="forgot-password">Forgot password?</Link>
             </div>
             
             <button type="submit" className="login-button">
